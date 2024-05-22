@@ -1,7 +1,7 @@
 using Infrastructure.Data.Contexts;
-using Infrastructure.GraphQL;
 using Infrastructure.GraphQL.Mutations;
 using Infrastructure.GraphQL.ObjectTypes;
+using Infrastructure.GraphQL.Query;
 using Infrastructure.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.EntityFrameworkCore;
