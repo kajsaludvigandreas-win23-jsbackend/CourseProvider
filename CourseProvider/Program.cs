@@ -29,7 +29,7 @@ var host = new HostBuilder()
                 .AddMutationType<CourseMutation>()
                 .AddType<CourseType>();
 
-        services.AddGraphQLServer();
+        services.AddGraphQLServer();//for azure
 
 
         var sp = services.BuildServiceProvider();
