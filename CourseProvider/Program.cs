@@ -15,14 +15,12 @@ var host = new HostBuilder()
     {
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
-
         services.AddPooledDbContextFactory<DataContext>(x =>
         {
-            x.UseCosmos(Environment.GetEnvironmentVariable("COSMOS_URI")!, Environment.GetEnvironmentVariable("COSMOS_DBNAME")!)
+            x.UseCosmos(Environment.GetEnvironmentVariable("COSMOS_URI")!,
+                        Environment.GetEnvironmentVariable("COSMOS_DBNAME")!)
             .UseLazyLoadingProxies();
-    });
-       
-        
+        });
         var sp = services.BuildServiceProvider();
         using var scope = sp.CreateScope();
         var dbContextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<DataContext>>();
@@ -35,7 +33,6 @@ var host = new HostBuilder()
                 .AddQueryType<Query>()
                 .AddMutationType<CourseMutation>()
                 .AddType<CourseType>();
-
         services.AddGraphQLServer();
 
     })

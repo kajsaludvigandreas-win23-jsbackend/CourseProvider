@@ -6,17 +6,22 @@ using Microsoft.Extensions.Logging;
 
 namespace CourseProvider.Functions;
 
-public class PlayGround(ILogger<PlayGround> logger)
+public class Playground
 {
-    private readonly ILogger<PlayGround> _logger = logger;
+    private readonly ILogger<Playground> _logger;
 
-    [Function("PlayGround")]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
+    public Playground(ILogger<Playground> logger)
+    {
+        _logger = logger;
+    }
+
+    [Function("Playground")]
+    public async Task<HttpResponseData> RunAsync([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
     {
         var response = req.CreateResponse();
         response.Headers.Add("Content-Type", "text/html; charset=utf-8");
         await response.WriteStringAsync(PlaygroundPage());
-        return response!;
+        return response;
     }
 
 

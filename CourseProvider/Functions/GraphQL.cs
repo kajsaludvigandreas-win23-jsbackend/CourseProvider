@@ -5,16 +5,21 @@ using Microsoft.Extensions.Logging;
 
 namespace CourseProvider.Functions
 {
-    public class GraphQL(ILogger<GraphQL> logger, IGraphQLRequestExecutor executor)
+    public class GraphQL
     {
-        private readonly ILogger<GraphQL> _logger = logger;
-        private readonly IGraphQLRequestExecutor _executor = executor;
+        private readonly ILogger<GraphQL> _logger;
+        private readonly IGraphQLRequestExecutor _graphQLRequestExecutor;
 
-        [Function("GraphQL")]
-        public async Task <IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+        public GraphQL(ILogger<GraphQL> logger, IGraphQLRequestExecutor graphQLRequestExecutor)
         {
-
-            return await _executor.ExecuteAsync(req);
+            _logger = logger;
+            _graphQLRequestExecutor = graphQLRequestExecutor;
+        }
+        [Function("GraphQL")]
+        public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+        {
+            return await _graphQLRequestExecutor.ExecuteAsync(req);
         }
     }
+
 }
