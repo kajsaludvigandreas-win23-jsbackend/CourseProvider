@@ -25,7 +25,7 @@ public class Playground
     }
 
 
-    private string PlaygroundPage()//hej
+    private string PlaygroundPage()
     {
         return @"
             <!DOCTYPE html>
