@@ -22,6 +22,13 @@ var host = new HostBuilder()
             .UseLazyLoadingProxies();
     });
        
+        
+        var sp = services.BuildServiceProvider();
+        using var scope = sp.CreateScope();
+        var dbContextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<DataContext>>();
+        using var context = dbContextFactory.CreateDbContext();
+        context.Database.EnsureCreated();
+
         services.AddScoped<ICourseService, CourseService>();
 
         services.AddGraphQLFunction()
@@ -30,14 +37,6 @@ var host = new HostBuilder()
                 .AddType<CourseType>();
 
         services.AddGraphQLServer();
-
-
-        var sp = services.BuildServiceProvider();
-        using var scope = sp.CreateScope();
-        var dbContextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory<DataContext>>();
-        using var context = dbContextFactory.CreateDbContext();
-        context.Database.EnsureCreated();
-
 
     })
     .Build();
