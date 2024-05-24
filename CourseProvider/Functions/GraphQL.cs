@@ -18,7 +18,7 @@ namespace CourseProvider.Functions
         [Function("GraphQL")]
         public async Task<IActionResult> RunAsync([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
         {
-            return await _graphQLRequestExecutor.ExecuteAsync(req);
+            return await _graphQLRequestExecutor.ExecuteAsync(req); //hej
         }
     }
 
