@@ -15,7 +15,7 @@ public class Playground
         _logger = logger;
     }
 
-    [Function("Playground")]
+    [Function("Playground")] //hej
     public async Task<HttpResponseData> RunAsync([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
     {
         var response = req.CreateResponse();
