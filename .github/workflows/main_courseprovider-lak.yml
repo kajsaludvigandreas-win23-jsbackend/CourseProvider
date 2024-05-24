@@ -39,4 +39,4 @@ jobs:
           app-name: 'courseprovider-lak'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_844D8310E7104173AB5E3A0CBCF11BAC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4DE63FEA48FF4BC6ABE00A26F4C8CD06 }}
